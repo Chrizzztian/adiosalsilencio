@@ -353,6 +353,7 @@
                         name="correo" 
                         class="form-input" 
                         placeholder="admin@ejemplo.com"
+                        title="Ingrese un correo electrónico válido"
                         required
                     >
                 </div>
@@ -383,6 +384,46 @@
         // Función para manejar el envío del formulario
         document.querySelector('.form-container').addEventListener('submit', function(e) {
             e.preventDefault();
+            
+            // Validar que el correo tenga formato válido
+            const correo = document.getElementById('correo').value.trim();
+            
+            // Verificar formato básico de email
+            let isValid = true;
+            let errorMsg = 'Error: Formato de correo electrónico inválido.\n\n';
+            
+            // Detectar errores específicos
+            if (correo !== correo.toLowerCase()) {
+                errorMsg += '• No use mayúsculas en el correo\n';
+                isValid = false;
+            }
+            if (!correo.includes('@')) {
+                errorMsg += '• Falta el símbolo @\n';
+                isValid = false;
+            }
+            if (!correo.includes('.')) {
+                errorMsg += '• Falta el punto (.)\n';
+                isValid = false;
+            }
+            if (correo.includes(' ')) {
+                errorMsg += '• No se permiten espacios\n';
+                isValid = false;
+            }
+            
+            // Validación adicional sin regex problemática
+            const atIndex = correo.indexOf('@');
+            const lastDotIndex = correo.lastIndexOf('.');
+            
+            if (atIndex > lastDotIndex || atIndex === -1 || lastDotIndex === -1) {
+                errorMsg += '• Formato incorrecto (debe ser: usuario@dominio.com)\n';
+                isValid = false;
+            }
+            
+            if (!isValid) {
+                errorMsg += '\nEjemplo correcto: admin@gmail.com';
+                alert(errorMsg);
+                return;
+            }
             
             // Aquí puedes agregar la lógica para validar los datos del administrador
             // Por ahora solo mostramos una alerta
