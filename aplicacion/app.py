@@ -2,7 +2,7 @@ import web
 
 urls = (
     '/', 'Index',
-    '/registrarme', 'Registrarme',
+    '/registrar_tutor', 'RegistrarTutor',
     '/iniciar_sesion', 'IniciarSesion',
     '/quienes_somos', 'QuienesSomos',
     '/inicio_administrador', 'InicioAdministrador'
@@ -23,7 +23,7 @@ class Index:
         web.header('Vary', '*')
         return render.index()
 
-class Registrarme:
+class RegistrarTutor:
     def GET(self):
         # Headers para evitar caché
         web.header('Cache-Control', 'no-cache, no-store, must-revalidate, max-age=0')
@@ -32,7 +32,7 @@ class Registrarme:
         web.header('Last-Modified', '')
         web.header('ETag', '')
         web.header('Vary', '*')
-        return render.registrarme()
+        return render.registrar_tutor()
 
 class IniciarSesion:
     def GET(self):
