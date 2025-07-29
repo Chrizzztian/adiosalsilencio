@@ -31,23 +31,27 @@
             width: 100%;
             max-width: 1200px;
             padding: 20px;
-            gap: 80px;
+            gap: 60px;
         }
 
         /* Sección del ajolote */
         .ajolote-section {
             flex: 1;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             padding-left: 0;
+            padding-right: 60px;
+            margin-left: -60px;
+            gap: 30px;
         }
 
         .ajolote-character {
             width: 550px;
             height: 550px;
             animation: float 3s ease-in-out infinite;
-            margin-left: -200px;
+            margin: 0;
         }
 
         .ajolote-character img {
@@ -193,6 +197,33 @@
             transform: translateY(-1px);
         }
 
+        /* Botón de administrador */
+        .admin-button {
+            background: linear-gradient(135deg, #4169E1, #6495ED);
+            color: white;
+            border: none;
+            padding: 15px 35px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 15px;
+            box-shadow: 0 4px 15px rgba(65, 105, 225, 0.4);
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .admin-button:hover {
+            background: linear-gradient(135deg, #1E3A8A, #4169E1);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(65, 105, 225, 0.6);
+        }
+
+        .admin-button:active {
+            transform: translateY(-1px);
+        }
+
         /* Animaciones */
         @keyframes float {
             0%, 100% {
@@ -235,6 +266,8 @@
             .ajolote-section {
                 justify-content: center;
                 padding-left: 0;
+                padding-right: 0;
+                margin-left: 0;
             }
 
             .ajolote-character {
@@ -280,6 +313,11 @@
                 font-size: 1.2rem;
             }
 
+            .admin-button {
+                padding: 12px 30px;
+                font-size: 1rem;
+            }
+
             .close-button {
                 width: 50px;
                 height: 50px;
@@ -304,6 +342,11 @@
     <div class="container">
         <!-- Sección del ajolote -->
         <div class="ajolote-section">
+            <!-- Botón para iniciar sesión como administrador -->
+            <button type="button" class="admin-button" onclick="window.location.href='/inicio_administrador'">
+                Iniciar Sesión de Administrador
+            </button>
+            
             <div class="ajolote-character">
                 <img src="../static/images/images_iniciar_sesion/ajolote_astronauta.png" alt="Ajolote Astronauta">
             </div>
@@ -315,13 +358,37 @@
             
             <form class="form-container" action="#" method="POST">
                 <div class="form-group">
-                    <label class="form-label" for="correo">Correo de Padre o Tutor:</label>
+                    <label class="form-label" for="nombre">Nombre de Niño:</label>
                     <input 
-                        type="email" 
-                        id="correo" 
-                        name="correo" 
+                        type="text" 
+                        id="nombre" 
+                        name="nombre" 
                         class="form-input" 
-                        placeholder="ejemplo@gmail.com"
+                        placeholder="Nombre del niño"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="primer-apellido">Primer Apellido:</label>
+                    <input 
+                        type="text" 
+                        id="primer-apellido" 
+                        name="primer_apellido" 
+                        class="form-input" 
+                        placeholder="Primer apellido del niño"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="segundo-apellido">Segundo Apellido:</label>
+                    <input 
+                        type="text" 
+                        id="segundo-apellido" 
+                        name="segundo_apellido" 
+                        class="form-input" 
+                        placeholder="Segundo apellido del niño"
                         required
                     >
                 </div>

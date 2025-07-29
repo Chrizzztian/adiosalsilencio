@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registrarme - Adios al Silencio</title>
+    <title>Inicio Administrador - Adios al Silencio</title>
     <style>
         /* Estilo básico para todos los elementos */
         * {
@@ -15,7 +15,7 @@
         /* Configuración del cuerpo de la página */
         body {
             font-family: Arial, sans-serif;
-            background: linear-gradient(180deg, #00BFFF 0%, #1E90FF 50%, #00BFFF 100%);
+            background: linear-gradient(180deg, #4169E1 0%, #1E3A8A 50%, #4169E1 100%);
             min-height: 100vh;
             display: flex;
             align-items: center;
@@ -42,13 +42,14 @@
             justify-content: center;
             align-items: center;
             padding-left: 0;
-            padding-right: 80px;
-            margin-left: -80px;
+            padding-right: 60px;
+            margin-left: -60px;
+            gap: 30px;
         }
 
         .ajolote-character {
-            width: 600px;
-            height: 600px;
+            width: 550px;
+            height: 550px;
             animation: float 3s ease-in-out infinite;
             margin: 0;
         }
@@ -57,16 +58,6 @@
             width: 100%;
             height: 100%;
             filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.3));
-        }
-
-        /* Acciones debajo del ajolote */
-        .ajolote-actions {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 15px;
-            margin-top: -30px;
-            width: 100%;
         }
 
         /* Sección del formulario */
@@ -150,7 +141,7 @@
 
         .form-input:focus {
             background: white;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 6px 20px rgba(65, 105, 225, 0.3);
             transform: translateY(-2px);
         }
 
@@ -159,36 +150,13 @@
             font-style: italic;
         }
 
-        /* Estilo específico para el select */
-        select.form-input {
-            padding-left: 15px;
-            padding-right: 45px;
-            text-align: left;
-            background-image: url("../static/images/images_registrarme/flecha_dropdown.png");
-            background-position: right 15px center;
-            background-repeat: no-repeat;
-            background-size: 16px;
-            appearance: none;
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            transition: none;
-        }
-
-        select.form-input:focus {
-            background-image: url("../static/images/images_registrarme/flecha_dropdown.png");
-            background-position: right 15px center;
-            background-repeat: no-repeat;
-            background-size: 16px;
-            transform: none;
-        }
-
-        /* Enlace para iniciar sesión */
-        .login-link {
+        /* Enlace para regresar */
+        .back-link {
             text-align: center;
             margin: 5px 0 0 0;
         }
 
-        .login-link a {
+        .back-link a {
             color: white;
             font-size: 1rem;
             text-decoration: underline;
@@ -197,14 +165,14 @@
             font-weight: normal;
         }
 
-        .login-link a:hover {
-            color: #E0F6FF;
+        .back-link a:hover {
+            color: #B0C4DE;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
 
         /* Botón de envío */
         .submit-button {
-            background: linear-gradient(135deg, #FF1493, #FF69B4);
+            background: linear-gradient(135deg, #6495ED, #87CEEB);
             color: white;
             border: none;
             padding: 18px 40px;
@@ -213,20 +181,35 @@
             font-weight: bold;
             cursor: pointer;
             margin-top: 10px;
-            box-shadow: 0 6px 20px rgba(255, 20, 147, 0.4);
+            box-shadow: 0 6px 20px rgba(100, 149, 237, 0.4);
             transition: all 0.3s ease;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
 
         .submit-button:hover {
-            background: linear-gradient(135deg, #C71585, #FF1493);
+            background: linear-gradient(135deg, #4169E1, #6495ED);
             transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(255, 20, 147, 0.6);
+            box-shadow: 0 8px 25px rgba(65, 105, 225, 0.6);
         }
 
         .submit-button:active {
             transform: translateY(-1px);
+        }
+
+        /* Indicador de administrador */
+        .admin-indicator {
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            color: #1E3A8A;
+            border: none;
+            padding: 15px 35px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: default;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         /* Animaciones */
@@ -276,13 +259,9 @@
             }
 
             .ajolote-character {
-                width: 450px;
-                height: 450px;
-                margin: 0;
-            }
-
-            .ajolote-actions {
-                margin-top: -20px;
+                width: 400px;
+                height: 400px;
+                margin-left: 0;
             }
 
             .form-title {
@@ -302,8 +281,8 @@
             }
 
             .ajolote-character {
-                width: 320px;
-                height: 320px;
+                width: 280px;
+                height: 280px;
                 margin-left: 0;
             }
 
@@ -320,6 +299,11 @@
             .submit-button {
                 padding: 15px 35px;
                 font-size: 1.2rem;
+            }
+
+            .admin-indicator {
+                padding: 12px 30px;
+                font-size: 1rem;
             }
 
             .close-button {
@@ -339,79 +323,36 @@
 <body>
     <!-- Botón de cerrar -->
     <div class="close-button" onclick="window.location.href='/'">
-        <img src="../static/images/images_registrarme/regresar.png" alt="Regresar">
+        <img src="../static/images/images_inicio_administrador/regresar.png" alt="Regresar">
     </div>
+    
     <!-- Contenedor principal -->
     <div class="container">
         <!-- Sección del ajolote -->
         <div class="ajolote-section">
-            <div class="ajolote-character">
-                <img src="../static/images/images_registrarme/ajolotedona.png" alt="Ajolote">
+            <!-- Indicador de modo administrador -->
+            <div class="admin-indicator">
+                Modo Administrador
             </div>
             
-            <!-- Botón y enlace debajo del ajolote -->
-            <div class="ajolote-actions">
-                <button type="submit" class="submit-button" form="registro-form">Siguiente</button>
-                
-                <!-- Enlace para iniciar sesión -->
-                <div class="login-link">
-                    <a href="/iniciar_sesion">¿Ya tienes una cuenta?</a>
-                </div>
+            <div class="ajolote-character">
+                <img src="../static/images/images_inicio_administrador/ajolote_dorado.png" alt="Ajolote Dorado">
             </div>
         </div>
 
         <!-- Sección del formulario -->
         <div class="form-section">
-            <h1 class="form-title">Registrarse</h1>
+            <h1 class="form-title">Administrador</h1>
             
-            <form class="form-container" id="registro-form" action="#" method="POST">
+            <form class="form-container" action="#" method="POST">
                 <div class="form-group">
-                    <label class="form-label" for="tipo-usuario">¿Quién eres?</label>
-                    <select 
-                        id="tipo-usuario" 
-                        name="tipo_usuario" 
-                        class="form-input" 
-                        required
-                    >
-                        <option value="" disabled selected>Selecciona una opción</option>
-                        <option value="padre">Padre</option>
-                        <option value="tutor">Tutor</option>
-                        <option value="maestro">Maestro</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label" for="nombre">Nombre:</label>
-                    <input 
-                        type="text" 
-                        id="nombre" 
-                        name="nombre" 
-                        class="form-input" 
-                        placeholder="Escribe tu nombre"
-                        required
-                    >
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label" for="primer-apellido-y-segundo-apellido">Primer Apellido y Segundo Apellido:</label>
-                    <input 
-                        type="text" 
-                        id="primer-apellido-y-segundo-apellido" 
-                        name="primer_apellido_y_segundo_apellido" 
-                        class="form-input" 
-                        placeholder="Escribe tu primer apellido y segundo apellido"
-                        required
-                    >
-                </div>
-
-                                <div class="form-group">
-                    <label class="form-label" for="correo-tutor">Correo:</label>
+                    <label class="form-label" for="correo">Correo Electrónico:</label>
                     <input 
                         type="email" 
-                        id="correo-tutor" 
-                        name="correo_tutor" 
+                        id="correo" 
+                        name="correo" 
                         class="form-input" 
-                        placeholder="ejemplo@gmail.com"
+                        placeholder="admin@ejemplo.com"
                         required
                     >
                 </div>
@@ -423,26 +364,32 @@
                         id="contraseña" 
                         name="contraseña" 
                         class="form-input" 
-                        placeholder="Escribe tu contraseña"
+                        placeholder="Ingresa tu contraseña de administrador"
                         required
                     >
                 </div>
 
+                <button type="submit" class="submit-button">Acceder como Administrador</button>
+
+                <!-- Enlace para regresar -->
+                <div class="back-link">
+                    <a href="/iniciar_sesion">← Regresar al inicio de sesión normal</a>
+                </div>
             </form>
         </div>
     </div>
 
     <script>
         // Función para manejar el envío del formulario
-        document.getElementById('registro-form').addEventListener('submit', function(e) {
+        document.querySelector('.form-container').addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // Aquí puedes agregar la lógica para enviar los datos
+            // Aquí puedes agregar la lógica para validar los datos del administrador
             // Por ahora solo mostramos una alerta
-            alert('¡Registro exitoso! Bienvenido a Adios al Silencio');
+            alert('¡Acceso de administrador exitoso! Bienvenido al panel de control');
             
-            // Redirigir a la página principal después del registro
-            // window.location.href = '/';
+            // Redirigir al panel de administrador después del inicio de sesión
+            // window.location.href = '/admin/dashboard';
         });
 
         // Animación adicional al cargar la página
