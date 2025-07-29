@@ -352,8 +352,8 @@
                         id="correo" 
                         name="correo" 
                         class="form-input" 
-                        placeholder="admin@ejemplo.com"
-                        title="Ingrese un correo electrónico válido"
+                        placeholder="admin@gmail.com o director@utec.edu.mx"
+                        title="Ingrese un correo electrónico válido de Gmail, Outlook, Yahoo, instituciones educativas mexicanas, etc."
                         required
                     >
                 </div>
@@ -419,8 +419,38 @@
                 isValid = false;
             }
             
+            // Validar que sea de un proveedor conocido
+            const dominiosPermitidos = [
+                // Proveedores internacionales
+                'gmail.com', 'outlook.com', 'hotmail.com', 'yahoo.com', 
+                'live.com', 'msn.com', 'icloud.com', 'protonmail.com',
+                'zoho.com', 'aol.com', 'mail.com', 'gmx.com',
+                
+                // Dominios institucionales de México
+                'unam.mx', 'ipn.mx', 'itesm.mx', 'udg.mx', 'uanl.mx',
+                'uach.mx', 'uas.mx', 'uaslp.mx', 'uv.mx', 'buap.mx',
+                'uat.mx', 'ujat.mx', 'unach.mx', 'uacj.mx', 'uabc.mx',
+                'uson.mx', 'uady.mx', 'ugto.mx', 'uaem.mx', 'uamx.mx',
+                'utec.edu.mx', 'utectulancingo.edu.mx',
+                
+                // Dominios educativos generales de México
+                'edu.mx', 'estudiantes.unam.mx', 'alumno.ipn.mx',
+                'itesm.edu.mx', 'tec.mx', 'estudiante.unam.mx',
+                
+                // Dominios gubernamentales de México
+                'gob.mx', 'sep.gob.mx', 'conacyt.mx', 'cinvestav.mx'
+            ];
+            
+            if (correo.includes('@')) {
+                const dominio = correo.split('@')[1];
+                if (dominio && !dominiosPermitidos.includes(dominio.toLowerCase())) {
+                    errorMsg += '• Solo se aceptan correos de: Gmail, Outlook, Yahoo, instituciones educativas (.edu.mx), etc.\n';
+                    isValid = false;
+                }
+            }
+            
             if (!isValid) {
-                errorMsg += '\nEjemplo correcto: admin@gmail.com';
+                errorMsg += '\nEjemplos válidos: admin@gmail.com, admin@unam.mx, director@utec.edu.mx';
                 alert(errorMsg);
                 return;
             }
