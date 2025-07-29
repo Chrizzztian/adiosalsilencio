@@ -3,6 +3,7 @@ import web
 urls = (
     '/', 'Index',
     '/registrar_tutor', 'RegistrarTutor',
+    '/registrar_chiquillo', 'RegistrarChiquillo',
     '/iniciar_sesion', 'IniciarSesion',
     '/quienes_somos', 'QuienesSomos',
     '/inicio_administrador', 'InicioAdministrador'
@@ -33,6 +34,17 @@ class RegistrarTutor:
         web.header('ETag', '')
         web.header('Vary', '*')
         return render.registrar_tutor()
+
+class RegistrarChiquillo:
+    def GET(self):
+        # Headers para evitar caché
+        web.header('Cache-Control', 'no-cache, no-store, must-revalidate, max-age=0')
+        web.header('Pragma', 'no-cache')
+        web.header('Expires', '0')
+        web.header('Last-Modified', '')
+        web.header('ETag', '')
+        web.header('Vary', '*')
+        return render.registrar_chiquillo()
 
 class IniciarSesion:
     def GET(self):
