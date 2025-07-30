@@ -4,6 +4,7 @@ urls = (
     '/', 'Index',
     '/registrar_tutor', 'RegistrarTutor',
     '/registrar_chiquillo', 'RegistrarChiquillo',
+    '/saludo_admin', 'SaludoAdmin',
     '/iniciar_sesion', 'IniciarSesion',
     '/quienes_somos', 'QuienesSomos',
     '/inicio_administrador', 'InicioAdministrador'
@@ -45,6 +46,40 @@ class RegistrarChiquillo:
         web.header('ETag', '')
         web.header('Vary', '*')
         return render.registrar_chiquillo()
+    
+    def POST(self):
+        # Headers para evitar caché
+        web.header('Cache-Control', 'no-cache, no-store, must-revalidate, max-age=0')
+        web.header('Pragma', 'no-cache')
+        web.header('Expires', '0')
+        web.header('Last-Modified', '')
+        web.header('ETag', '')
+        web.header('Vary', '*')
+        
+        # Obtener datos del formulario
+        data = web.input()
+        print("POST recibido en /registrar_chiquillo")
+        print("Datos:", data)
+        
+        # Aquí puedes procesar los datos del formulario si es necesario
+        # Por ejemplo, guardar los datos de los niños registrados
+        
+        # Redirigir a la página de saludo del administrador
+        print("Redirigiendo a /saludo_admin")
+        raise web.seeother('/saludo_admin')
+
+class SaludoAdmin:
+    def GET(self):
+        print("GET recibido en /saludo_admin")
+        # Headers para evitar caché
+        web.header('Cache-Control', 'no-cache, no-store, must-revalidate, max-age=0')
+        web.header('Pragma', 'no-cache')
+        web.header('Expires', '0')
+        web.header('Last-Modified', '')
+        web.header('ETag', '')
+        web.header('Vary', '*')
+        print("Renderizando template saludo_admin")
+        return render.saludo_admin()
 
 class IniciarSesion:
     def GET(self):
