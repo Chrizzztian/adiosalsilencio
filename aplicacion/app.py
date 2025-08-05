@@ -5,6 +5,7 @@ urls = (
     '/registrar_tutor', 'RegistrarTutor',
     '/registrar_chiquillo', 'RegistrarChiquillo',
     '/saludo_admin', 'SaludoAdmin',
+    '/perfil_admin', 'PerfilAdmin',
     '/iniciar_sesion', 'IniciarSesion',
     '/quienes_somos', 'QuienesSomos',
     '/inicio_administrador', 'InicioAdministrador'
@@ -80,6 +81,17 @@ class SaludoAdmin:
         web.header('Vary', '*')
         print("Renderizando template saludo_admin")
         return render.saludo_admin()
+
+class PerfilAdmin:
+    def GET(self):
+        # Headers para evitar caché
+        web.header('Cache-Control', 'no-cache, no-store, must-revalidate, max-age=0')
+        web.header('Pragma', 'no-cache')
+        web.header('Expires', '0')
+        web.header('Last-Modified', '')
+        web.header('ETag', '')
+        web.header('Vary', '*')
+        return render.perfil_admin()
 
 class IniciarSesion:
     def GET(self):

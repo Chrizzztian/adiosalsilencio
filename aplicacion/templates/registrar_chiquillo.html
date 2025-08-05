@@ -419,7 +419,7 @@
             
             <!-- Botón y enlace debajo del ajolote -->
             <div class="ajolote-actions">
-                <button type="button" class="submit-button" onclick="window.location.href='/saludo_admin'">Siguiente</button>
+                <button type="submit" class="submit-button" form="registro-form">Empezar</button>
                 
                 <!-- Enlace para iniciar sesión -->
                 <div class="login-link">
@@ -432,7 +432,7 @@
         <div class="form-section">
             <h1 class="form-title">Registrar Niños</h1>
             
-            <form class="form-container" id="registro-form" action="/registrar_chiquillo" method="POST">
+            <form class="form-container" id="registro-form" action="#" method="POST">
                 <!-- Contenedor para múltiples chiquillos -->
                 <div id="chiquillos-container">
                     <!-- Primer chiquillo (siempre presente) -->
@@ -606,6 +606,33 @@
                 }
             }
         }
+
+        // Función para manejar el envío del formulario
+        document.getElementById('registro-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Recopilar datos de todos los chiquillos
+            var chiquillos = document.querySelectorAll('.chiquillo-form');
+            var datosChiquillos = [];
+            
+            for (var i = 0; i < chiquillos.length; i++) {
+                var numero = i + 1;
+                var datos = {
+                    numero: numero,
+                    tipo: document.getElementById('tipo-usuario-' + numero).value,
+                    nombre: document.getElementById('nombre-' + numero).value,
+                    apellidos: document.getElementById('apellidos-' + numero).value,
+                    contraseña: document.getElementById('contraseña-' + numero).value
+                };
+                datosChiquillos.push(datos);
+            }
+            
+            // Guardar datos de niños en localStorage
+            localStorage.setItem('ninosRegistrados', JSON.stringify(datosChiquillos));
+            
+            // Redirigir al saludo del administrador
+            window.location.href = '/saludo_admin';
+        });
 
         // Animación adicional al cargar la página
         window.addEventListener('load', function() {

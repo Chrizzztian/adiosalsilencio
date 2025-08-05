@@ -437,9 +437,11 @@
         // Función para manejar el envío del formulario
         document.getElementById('registro-form').addEventListener('submit', function(e) {
             e.preventDefault();
+            console.log('Formulario enviado - iniciando validación');
             
             // Validar que el correo tenga formato válido
             const correo = document.getElementById('correo-tutor').value.trim();
+            console.log('Email ingresado:', correo);
             
             // Verificar formato básico de email
             let isValid = true;
@@ -505,10 +507,31 @@
             if (!isValid) {
                 errorMsg += '\nEjemplos válidos: usuario@gmail.com, estudiante@unam.mx, profesor@utec.edu.mx';
                 alert(errorMsg);
+                console.log('Validación falló:', errorMsg);
                 return;
             }
             
+            console.log('Validación exitosa, recopilando datos...');
+            
+            // Recopilar datos del formulario antes de redirigir
+            const datosTutor = {
+                nombre: document.getElementById('nombre').value.trim(),
+                apellidos: document.getElementById('primer-apellido-y-segundo-apellido').value.trim(),
+                email: correo,
+                telefono: '', // No hay campo de teléfono en este formulario
+                tipo_usuario: document.getElementById('tipo-usuario').value,
+                contraseña: document.getElementById('contraseña').value,
+                fechaRegistro: new Date().toISOString()
+            };
+            
+            console.log('Datos del tutor recopilados:', datosTutor);
+            
+            // Guardar datos en localStorage
+            localStorage.setItem('datosTutor', JSON.stringify(datosTutor));
+            console.log('Datos guardados en localStorage');
+            
             // Redirigir a registrar_chiquillo después del registro
+            console.log('Redirigiendo a registrar_chiquillo...');
             window.location.href = '/registrar_chiquillo';
         });
 
