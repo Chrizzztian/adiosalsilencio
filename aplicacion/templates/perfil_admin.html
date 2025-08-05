@@ -52,7 +52,7 @@
         .container {
             max-width: 1000px;
             margin: 0 auto;
-            padding-top: 100px;
+            padding-top: 50px;
         }
 
         /* Header del perfil */
@@ -288,7 +288,7 @@
         /* Responsivo */
         @media (max-width: 768px) {
             .container {
-                padding-top: 80px;
+                padding-top: 40px;
             }
 
             .profile-header {
@@ -382,12 +382,6 @@
             <button class="action-button" onclick="window.location.href='/registrar_chiquillo'">
                 Registrar nuevo niño
             </button>
-            <button class="action-button secondary" onclick="window.location.href='/inicio_administrador'">
-                Ver dashboard
-            </button>
-            <button class="action-button" onclick="limpiarDatos()" style="background: linear-gradient(135deg, #DC143C, #FF6347);">
-                Limpiar datos de prueba
-            </button>
         </div>
     </div>
 
@@ -470,16 +464,6 @@
                 
                 listaContainer.appendChild(childItem);
             });
-        }
-
-        // Función para limpiar datos de prueba
-        function limpiarDatos() {
-            if (confirm('¿Estás seguro de que quieres limpiar todos los datos?\n\nEsto eliminará:\n- Información del tutor\n- Niños registrados\n\nTendrás que registrarte de nuevo.')) {
-                localStorage.removeItem('datosTutor');
-                localStorage.removeItem('ninosRegistrados');
-                alert('Datos eliminados. Recargaremos la página.');
-                location.reload();
-            }
         }
 
         // Función para verificar si hay datos nuevos desde el formulario de registro
