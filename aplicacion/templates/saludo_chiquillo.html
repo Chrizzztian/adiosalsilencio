@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Saludo Administrador - Adios al Silencio</title>
+    <title>Saludo Chiquillo - Adios al Silencio</title>
     <style>
         * {
             margin: 0;
@@ -93,9 +93,8 @@
         /* Mensaje de bienvenida */
         .mensaje-bienvenida {
             color: white;
-            font-size: 1.8rem;
-            font-weight: normal;
-            text-shadow: none;
+            font-size: 2rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
             line-height: 1.4;
             margin-bottom: 5px;
             font-family: Arial, sans-serif;
@@ -103,36 +102,37 @@
 
         .mensaje-perfil {
             color: white;
-            font-size: 1.8rem;
-            font-weight: normal;
-            text-shadow: none;
-            line-height: 3.0;
+            font-size: 2rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            line-height: 1.4;
+            margin-bottom: 5px;
             font-family: Arial, sans-serif;
         }
 
-        /* Botón de perfil */
-        .boton-perfil {
+        /* Botón de continuar */
+        .boton-continuar {
             background: linear-gradient(135deg, #FF1493, #FF69B4);
             color: white;
             border: none;
-            padding: 18px 50px;
+            padding: 20px 60px;
             border-radius: 50px;
-            font-size: 1.4rem;
+            font-size: 1.6rem;
             font-weight: bold;
             cursor: pointer;
             box-shadow: 0 8px 25px rgba(255, 20, 147, 0.4);
             transition: all 0.3s ease;
             text-transform: none;
             letter-spacing: 1px;
+            margin-top: 10px;
         }
 
-        .boton-perfil:hover {
+        .boton-continuar:hover {
             background: linear-gradient(135deg, #C71585, #FF1493);
             transform: translateY(-3px);
             box-shadow: 0 12px 35px rgba(255, 20, 147, 0.6);
         }
 
-        .boton-perfil:active {
+        .boton-continuar:active {
             transform: translateY(-1px);
         }
 
@@ -149,20 +149,20 @@
         /* Responsivo */
         @media (max-width: 768px) {
             .mensaje-bienvenida {
-                font-size: 1.4rem;
+                font-size: 1.1rem;
             }
 
             .mensaje-perfil {
+                font-size: 1.1rem;
+            }
+
+            .boton-continuar {
+                padding: 18px 50px;
                 font-size: 1.4rem;
             }
 
-            .boton-perfil {
-                padding: 15px 40px;
-                font-size: 1.2rem;
-            }
-
             .ajolote-image {
-                width: 280px;
+                width: 300px;
             }
 
             .close-button {
@@ -185,48 +185,48 @@
             }
 
             .mensaje-bienvenida {
-                font-size: 1.2rem;
+                font-size: 1rem;
             }
 
             .mensaje-perfil {
+                font-size: 1rem;
+            }
+
+            .boton-continuar {
+                padding: 15px 40px;
                 font-size: 1.2rem;
             }
 
-            .boton-perfil {
-                padding: 12px 30px;
-                font-size: 1.1rem;
-            }
-
             .ajolote-image {
-                width: 200px;
+                width: 220px;
             }
         }
     </style>
 </head>
 <body>
     <!-- Botón de cerrar -->
-    <div class="close-button" onclick="window.location.href='/inicio_administrador'">
-        <img src="../static/images/images_saludo_admin/regresar.png" alt="Regresar">
+    <div class="close-button" onclick="window.location.href='/iniciar_sesion'">
+        <img src="../static/images/images_saludo_chiquillo/regresar.png" alt="Regresar">
     </div>
 
     <!-- Contenedor principal -->
     <div class="container">
-        <!-- Ajolote con corazón -->
+        <!-- Ajolote en patineta -->
         <div class="ajolote-container">
-            <img src="../static/images/images_saludo_admin/ajolote_corazon.png" 
-                 alt="Ajolote con corazón" 
+            <img src="../static/images/images_saludo_chiquillo/ajolote_patineta.png" 
+                 alt="Ajolote en patineta" 
                  class="ajolote-image">
         </div>
 
         <!-- Mensaje de bienvenida -->
         <div class="mensaje-container">
             <div class="mensaje-bienvenida">¡Hola! Te doy la bienvenida a ¡Adiós al Silencio!</div>
-            <div class="mensaje-perfil">Accede a tu perfil de administrador presionado el botón</div>
+            <div class="mensaje-perfil">¡Vamos a divertirnos y aprender juntos!</div>
         </div>
 
-        <!-- Botón para entrar al perfil -->
-        <button class="boton-perfil" onclick="window.location.href='/perfil_admin'">
-            ENTRAR
+        <!-- Botón para continuar -->
+        <button class="boton-continuar" onclick="window.location.href='/perfil_chiquillo'">
+            Continuar
         </button>
     </div>
 

@@ -343,7 +343,7 @@
             <!-- Información personal -->
             <div class="profile-section">
                 <h3 class="section-title">
-                    📋 Información Personal
+                    Información Personal
                 </h3>
                 <div class="info-item">
                     <div class="info-label">Nombre completo:</div>
@@ -366,7 +366,7 @@
             <!-- Niños registrados -->
             <div class="profile-section">
                 <h3 class="section-title">
-                    👨‍👩‍👧‍👦 Niños Registrados
+                    Niños Registrados
                 </h3>
                 <div class="children-list" id="children-list">
                     <!-- Los niños registrados se cargarán dinámicamente aquí -->
@@ -417,10 +417,14 @@
             document.getElementById('nombre-completo').textContent = nombreCompleto;
             document.getElementById('email-info').textContent = email;
             
-            // Determinar el tipo de cuenta basado en el género del tutor
-            let rolMostrar = 'Tutor';
-            if (tipoUsuario === 'tutora' || datosTutor.genero === 'femenino') {
-                rolMostrar = 'Tutora';
+            // Determinar el tipo de cuenta basado en lo que seleccionó el usuario
+            let rolMostrar = 'Tutor'; // Valor por defecto
+            if (tipoUsuario === 'padre') {
+                rolMostrar = 'Padre';
+            } else if (tipoUsuario === 'tutor') {
+                rolMostrar = 'Tutor';
+            } else if (tipoUsuario === 'maestro') {
+                rolMostrar = 'Maestro';
             }
             document.getElementById('profile-role').textContent = rolMostrar;
             document.getElementById('tipo-cuenta').textContent = rolMostrar;

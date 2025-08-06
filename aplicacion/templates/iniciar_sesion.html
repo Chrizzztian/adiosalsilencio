@@ -409,12 +409,26 @@
         document.querySelector('.form-container').addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // Aquí puedes agregar la lógica para validar los datos
-            // Por ahora solo mostramos una alerta
-            alert('¡Inicio de sesión exitoso! Bienvenido de vuelta');
+            // Obtener los datos del formulario
+            const nombre = document.getElementById('nombre').value;
+            const apellidos = document.getElementById('primer-apellido-y-segundo-apellido').value;
+            const contraseña = document.getElementById('contraseña').value;
             
-            // Redirigir después del inicio de sesión
-            // window.location.href = '/';
+            // Validación básica (puedes agregar más validaciones aquí)
+            if (nombre && apellidos && contraseña) {
+                // Guardar datos del niño en localStorage (opcional)
+                const datosNino = {
+                    nombre: nombre,
+                    apellidos: apellidos,
+                    fechaAcceso: new Date().toISOString()
+                };
+                localStorage.setItem('ninoActual', JSON.stringify(datosNino));
+                
+                // Redirigir al saludo del chiquillo
+                window.location.href = '/saludo_chiquillo';
+            } else {
+                alert('Por favor, completa todos los campos.');
+            }
         });
 
         // Animación adicional al cargar la página

@@ -5,6 +5,7 @@ urls = (
     '/registrar_tutor', 'RegistrarTutor',
     '/registrar_chiquillo', 'RegistrarChiquillo',
     '/saludo_admin', 'SaludoAdmin',
+    '/saludo_chiquillo', 'SaludoChiquillo',
     '/perfil_admin', 'PerfilAdmin',
     '/iniciar_sesion', 'IniciarSesion',
     '/quienes_somos', 'QuienesSomos',
@@ -146,6 +147,17 @@ class InicioAdministrador:
         # Por ahora, solo retornamos la misma página
         # En el futuro aquí redirigiríamos al dashboard de administrador
         return render.inicio_administrador()
+
+class SaludoChiquillo:
+    def GET(self):
+        # Headers para evitar caché
+        web.header('Cache-Control', 'no-cache, no-store, must-revalidate, max-age=0')
+        web.header('Pragma', 'no-cache')
+        web.header('Expires', '0')
+        web.header('Last-Modified', '')
+        web.header('ETag', '')
+        web.header('Vary', '*')
+        return render.saludo_chiquillo()
 
 if __name__ == "__main__":
     app.run()
