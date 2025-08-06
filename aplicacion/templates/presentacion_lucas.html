@@ -91,18 +91,18 @@
         }
 
         /* Mensaje de bienvenida */
-        .mensaje-bienvenida {
+        .mensaje-uno {
             color: white;
-            font-size: 2rem;
+            font-size: 1.6rem;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
             line-height: 1.4;
             margin-bottom: 5px;
             font-family: Arial, sans-serif;
         }
 
-        .mensaje-perfil {
+        .mensaje-dos {
             color: white;
-            font-size: 2rem;
+            font-size: 1.6rem;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
             line-height: 1.4;
             margin-bottom: 5px;
@@ -148,11 +148,11 @@
 
         /* Responsivo */
         @media (max-width: 768px) {
-            .mensaje-bienvenida {
+            .mensaje-uno{
                 font-size: 1.1rem;
             }
 
-            .mensaje-perfil {
+            .mensaje-dos {
                 font-size: 1.1rem;
             }
 
@@ -184,11 +184,11 @@
                 margin: 0 10px 30px 10px;
             }
 
-            .mensaje-bienvenida {
+            .mensaje-uno {
                 font-size: 1rem;
             }
 
-            .mensaje-perfil {
+            .mensaje-dos {
                 font-size: 1rem;
             }
 
@@ -213,19 +213,20 @@
     <div class="container">
         <!-- Ajolote en patineta -->
         <div class="ajolote-container">
-            <img src="../static/images/images_saludo_chiquillo/ajolote_patineta.png" 
+            <img src="../static/images/images_saludo_chiquillo/ajolote_bebida.png" 
                  alt="Ajolote en patineta" 
                  class="ajolote-image">
         </div>
 
         <!-- Mensaje de bienvenida -->
         <div class="mensaje-container">
-            <div class="mensaje-bienvenida">¡Hola! Te doy la bienvenida a ¡Adiós al Silencio!</div>
-            <div class="mensaje-perfil">¡Vamos a divertirnos y aprender juntos!</div>
+            <div class="mensaje-uno">Mi nombre es Lucas, y hoy aprenderás sobre.....</div>
+            <div class="mensaje-dos">¡La gran Lengua de Señas Mexicana! (LSM), aunque eso si, siéntete libre de aprender y relájate,
+            ¡te aseguro que te vas a divertir!</div>
         </div>
 
         <!-- Botón para continuar -->
-        <button class="boton-continuar" onclick="window.location.href='/presentacion_lucas'">
+        <button class="boton-continuar" onclick="window.location.href='/presentacion_pagina'">
             CONTINUAR
         </button>
     </div>

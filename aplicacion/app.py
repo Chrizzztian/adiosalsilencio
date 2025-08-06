@@ -6,6 +6,9 @@ urls = (
     '/registrar_chiquillo', 'RegistrarChiquillo',
     '/saludo_admin', 'SaludoAdmin',
     '/saludo_chiquillo', 'SaludoChiquillo',
+    '/presentacion_lucas', 'PresentacionLucas',
+    '/presentacion_pagina', 'PresentacionPagina',
+    '/lecciones', 'Lecciones',
     '/perfil_admin', 'PerfilAdmin',
     '/iniciar_sesion', 'IniciarSesion',
     '/quienes_somos', 'QuienesSomos',
@@ -158,6 +161,39 @@ class SaludoChiquillo:
         web.header('ETag', '')
         web.header('Vary', '*')
         return render.saludo_chiquillo()
+
+class PresentacionLucas:
+    def GET(self):
+        # Headers para evitar caché
+        web.header('Cache-Control', 'no-cache, no-store, must-revalidate, max-age=0')
+        web.header('Pragma', 'no-cache')
+        web.header('Expires', '0')
+        web.header('Last-Modified', '')
+        web.header('ETag', '')
+        web.header('Vary', '*')
+        return render.presentacion_lucas()
+
+class PresentacionPagina:
+    def GET(self):
+        # Headers para evitar caché
+        web.header('Cache-Control', 'no-cache, no-store, must-revalidate, max-age=0')
+        web.header('Pragma', 'no-cache')
+        web.header('Expires', '0')
+        web.header('Last-Modified', '')
+        web.header('ETag', '')
+        web.header('Vary', '*')
+        return render.presentacion_pagina()
+
+class Lecciones:
+    def GET(self):
+        # Headers para evitar caché
+        web.header('Cache-Control', 'no-cache, no-store, must-revalidate, max-age=0')
+        web.header('Pragma', 'no-cache')
+        web.header('Expires', '0')
+        web.header('Last-Modified', '')
+        web.header('ETag', '')
+        web.header('Vary', '*')
+        return render.lecciones()
 
 if __name__ == "__main__":
     app.run()
