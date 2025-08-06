@@ -226,12 +226,30 @@
         </div>
 
         <!-- Botón para continuar -->
-        <button class="boton-continuar" onclick="window.location.href='/presentacion_pagina'">
+        <button class="boton-continuar" onclick="reproducirSonidoBoton(); setTimeout(function() { window.location.href='/presentacion_pagina'; }, 300);">
             CONTINUAR
         </button>
     </div>
 
+    <!-- Audio para botón -->
+    <audio id="audioBoton" preload="auto">
+        <source src="../static/audio/audio_botones/re.mp3" type="audio/mpeg">
+        Tu navegador no soporta el elemento de audio.
+    </audio>
+
     <script>
+        // Función para reproducir sonido del botón
+        function reproducirSonidoBoton() {
+            const audioBoton = document.getElementById('audioBoton');
+            if (audioBoton) {
+                audioBoton.volume = 0.8; // Volumen un poco más alto para el efecto del botón
+                audioBoton.currentTime = 0; // Reiniciar desde el inicio
+                audioBoton.play().catch(function(error) {
+                    console.log('Error al reproducir sonido del botón:', error);
+                });
+            }
+        }
+
         // Animación al cargar la página
         window.addEventListener('load', function() {
             document.body.style.opacity = '0';

@@ -225,21 +225,70 @@
         </div>
 
         <!-- Botón para continuar -->
-        <button class="boton-continuar" onclick="window.location.href='/presentacion_lucas'">
+        <button class="boton-continuar" onclick="reproducirSonidoBoton(); setTimeout(function() { window.location.href='/presentacion_lucas'; }, 300);">
             CONTINUAR
         </button>
     </div>
 
+    <!-- Audio de bienvenida -->
+    <audio id="audioSaludo" preload="auto">
+        <source src="../static/audio/audio_saludo_chiquillo/sintetizador_saludo.mp3" type="audio/mpeg">
+        Tu navegador no soporta el elemento de audio.
+    </audio>
+
+    <!-- Audio para botón -->
+    <audio id="audioBoton" preload="auto">
+        <source src="../static/audio/audio_botones/do.mp3" type="audio/mpeg">
+        Tu navegador no soporta el elemento de audio.
+    </audio>
+
     <script>
+        // Función para reproducir sonido del botón
+        function reproducirSonidoBoton() {
+            const audioBoton = document.getElementById('audioBoton');
+            if (audioBoton) {
+                audioBoton.volume = 0.8; // Volumen un poco más alto para el efecto del botón
+                audioBoton.currentTime = 0; // Reiniciar desde el inicio
+                audioBoton.play().catch(function(error) {
+                    console.log('Error al reproducir sonido del botón:', error);
+                });
+            }
+        }
+
         // Animación al cargar la página
         window.addEventListener('load', function() {
             document.body.style.opacity = '0';
             document.body.style.transition = 'opacity 0.5s ease';
             
+            // Reproducir audio de saludo
+            const audioSaludo = document.getElementById('audioSaludo');
+            if (audioSaludo) {
+                // Configurar volumen moderado
+                audioSaludo.volume = 0.7;
+                
+                // Intentar reproducir el audio
+                audioSaludo.play().catch(function(error) {
+                    console.log('No se pudo reproducir el audio automáticamente:', error);
+                    // Los navegadores modernos bloquean la reproducción automática
+                    // El audio se reproducirá cuando el usuario interactúe con la página
+                });
+            }
+            
             setTimeout(function() {
                 document.body.style.opacity = '1';
             }, 100);
         });
+
+        // Reproducir audio cuando el usuario haga clic en cualquier parte de la página
+        // (solución para políticas de autoplay de navegadores)
+        document.addEventListener('click', function() {
+            const audioSaludo = document.getElementById('audioSaludo');
+            if (audioSaludo && audioSaludo.paused) {
+                audioSaludo.play().catch(function(error) {
+                    console.log('Error al reproducir audio:', error);
+                });
+            }
+        }, { once: true }); // Solo se ejecuta una vez
     </script>
 </body>
 </html>
