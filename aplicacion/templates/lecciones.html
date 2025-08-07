@@ -3,43 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- TÍTULO: Página principal de lecciones interactivas -->
     <title>Lecciones - Adios al Silencio</title>
     <style>
+        /* === RESET CSS UNIVERSAL === */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        /* === DISEÑO DE LA PÁGINA PRINCIPAL === */
         body {
             font-family: Arial, sans-serif;
+            /* Mismo fondo azul degradado para consistencia */
             background: linear-gradient(180deg, #00BFFF 0%, #1E90FF 50%, #00BFFF 100%);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-            padding: 20px;
-            position: relative;
-            overflow-x: hidden;
+            min-height: 100vh;                /* Altura completa de pantalla */
+            display: flex;                    /* Flexbox para organizar elementos */
+            flex-direction: column;           /* Elementos en columna */
+            align-items: center;              /* Centrar horizontalmente */
+            justify-content: flex-start;     /* Comenzar desde arriba (no centrar) */
+            padding: 20px;                   /* Espacio interno */
+            position: relative;               /* Para el botón de cerrar */
+            overflow-x: hidden;              /* Evita scroll horizontal */
         }
 
-        /* Botón de cerrar */
+        /* === BOTÓN DE CERRAR (REGRESAR) === */
         .close-button {
-            position: absolute;
-            top: 30px;
-            right: 30px;
-            width: 60px;
+            position: absolute;       /* Posición fija en esquina */
+            top: 30px;               /* 30px desde arriba */
+            right: 30px;             /* 30px desde la derecha */
+            width: 60px;             /* Tamaño del botón */
             height: 60px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
+            cursor: pointer;         /* Cursor de mano */
+            transition: all 0.3s ease;  /* Animación suave */
+            display: flex;           /* Para centrar la imagen */
             align-items: center;
             justify-content: center;
         }
 
+        /* === EFECTO HOVER DEL BOTÓN === */
         .close-button:hover {
-            transform: scale(1.1);
+            transform: scale(1.1);   /* Se agranda al pasar el mouse */
         }
 
         .close-button img {
@@ -65,51 +70,61 @@
             text-align: center;
         }
 
-        /* Contenedor de lecciones */
+        /* === CONTENEDOR DE LAS LECCIONES === */
+        /* Usa CSS Grid para organizar las tarjetas de lecciones automáticamente */
         .lecciones-container {
-            display: grid;
+            display: grid;                /* Sistema de grilla */
+            /* Crea columnas automáticamente: mínimo 240px, máximo igual distribución */
             grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 25px;
-            max-width: 1200px;
-            width: 100%;
-            padding: 0 20px;
+            gap: 25px;                    /* Espacio entre tarjetas */
+            max-width: 1200px;           /* Ancho máximo del contenedor */
+            width: 100%;                 /* Usar todo el ancho disponible */
+            padding: 0 20px;             /* Espacio a los lados */
         }
 
-        /* Tarjeta de lección */
+        /* === TARJETA INDIVIDUAL DE LECCIÓN === */
         .leccion-card {
-            background: transparent;
-            border-radius: 20px;
-            padding: 20px;
+            background: transparent;      /* Fondo transparente */
+            border-radius: 20px;         /* Bordes redondeados */
+            padding: 20px;               /* Espacio interno */
+            /* Sombra que da efecto de profundidad */
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s ease;
-            cursor: pointer;
-            position: relative;
-            min-height: 320px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
+            transition: all 0.3s ease;   /* Animación suave para cambios */
+            cursor: pointer;             /* Muestra que es clickeable */
+            position: relative;          /* Para posicionar elementos internos */
+            min-height: 320px;          /* Altura mínima */
+            display: flex;              /* Flexbox para organizar contenido */
+            flex-direction: column;     /* Elementos en columna */
+            align-items: center;        /* Centrar horizontalmente */
+            text-align: center;         /* Texto centrado */
         }
 
+        /* === EFECTO HOVER DE LAS TARJETAS === */
         .leccion-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-5px);  /* Se eleva 5px */
+            /* Sombra más intensa al hacer hover */
             box-shadow: 0 12px 35px rgba(0, 0, 0, 0.3);
         }
 
+        /* === ESTADOS DE LAS LECCIONES === */
+        
+        /* LECCIÓN DISPONIBLE: Se puede jugar */
         .leccion-card.disponible {
             background: transparent;
-            border: 3px solid #00BFFF;
+            border: 3px solid #00BFFF;   /* Borde azul */
         }
 
+        /* LECCIÓN COMPLETADA: Ya se terminó, se puede repetir */
         .leccion-card.completada {
             background: transparent;
-            border: 3px solid #32CD32;
+            border: 3px solid #32CD32;   /* Borde verde */
         }
 
+        /* LECCIÓN BLOQUEADA: No se puede acceder aún */
         .leccion-card.bloqueada {
             background: transparent;
-            border: 3px solid #888;
-            cursor: not-allowed;
+            border: 3px solid #888;      /* Borde gris */
+            cursor: not-allowed;         /* Cursor de "prohibido" */
         }
 
         .leccion-card.bloqueada:hover {
@@ -337,31 +352,39 @@
     </div>
 
     <script>
-        // Sistema de progreso de lecciones
+        // === SISTEMA DE PROGRESO DE LECCIONES ===
+        
+        // ORDEN SECUENCIAL: Define el orden en que se desbloquean las lecciones
+        // Cada lección debe completarse para desbloquear la siguiente
         const LECCIONES_ORDEN = [
-            'introduccion',
-            'coordinacion', 
-            'abecedario',
-            'numeros'
+            'introduccion',    // 1. Siempre disponible (punto de entrada)
+            'coordinacion',    // 2. Se desbloquea al completar introducción
+            'abecedario',      // 3. Se desbloquea al completar coordinación
+            'numeros'          // 4. Se desbloquea al completar abecedario
         ];
 
-        // Cargar progreso desde localStorage
+        // === FUNCIÓN: CARGAR PROGRESO GUARDADO ===
+        // Lee el progreso del usuario desde el almacenamiento local del navegador
         function cargarProgreso() {
+            // Intentar obtener datos guardados
             const progreso = localStorage.getItem('progreso_lecciones');
             if (progreso) {
+                // Si hay datos, convertir de texto a objeto JavaScript
                 return JSON.parse(progreso);
             }
-            // Por defecto, solo la introducción está disponible
+            // ESTADO INICIAL: Solo la introducción está disponible
             return {
-                'introduccion': 'disponible',
-                'coordinacion': 'bloqueada',
-                'abecedario': 'bloqueada', 
-                'numeros': 'bloqueada'
+                'introduccion': 'disponible',  // Puede jugar
+                'coordinacion': 'bloqueada',   // No puede acceder
+                'abecedario': 'bloqueada',     // No puede acceder
+                'numeros': 'bloqueada'         // No puede acceder
             };
         }
 
-        // Guardar progreso en localStorage
+        // === FUNCIÓN: GUARDAR PROGRESO ===
+        // Guarda el estado actual en el almacenamiento local del navegador
         function guardarProgreso(progreso) {
+            // Convertir objeto a texto y guardarlo
             localStorage.setItem('progreso_lecciones', JSON.stringify(progreso));
         }
 

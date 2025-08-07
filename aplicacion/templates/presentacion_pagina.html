@@ -3,31 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Saludo Chiquillo - Adios al Silencio</title>
+    <!-- TÍTULO: Esta es la página final antes de llegar a las lecciones -->
+    <title>Presentación de la Página - Adios al Silencio</title>
     <style>
+        /* === RESET: Quita espacios predeterminados del navegador === */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        /* === CUERPO DE LA PÁGINA === */
         body {
             font-family: Arial, sans-serif;
+            /* Mismo fondo azul degradado para mantener consistencia visual */
             background: linear-gradient(180deg, #00BFFF 0%, #1E90FF 50%, #00BFFF 100%);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            position: relative;
+            min-height: 100vh;        /* Ocupa toda la altura de la pantalla */
+            display: flex;            /* Flexbox para centrar todo */
+            flex-direction: column;   /* Elementos apilados verticalmente */
+            align-items: center;      /* Centrado horizontal */
+            justify-content: center;  /* Centrado vertical */
+            padding: 20px;           /* Espacio interno */
+            position: relative;       /* Para el botón de cerrar */
         }
 
-        /* Botón de cerrar */
+        /* === BOTÓN DE CERRAR === */
         .close-button {
-            position: absolute;
-            top: 30px;
-            right: 30px;
+            position: absolute;       /* Posición fija en la esquina */
+            top: 30px;               /* Distancia desde arriba */
+            right: 30px;             /* Distancia desde la derecha */
             width: 60px;
             height: 60px;
             cursor: pointer;
@@ -213,29 +217,36 @@
     </div>
 
     <!-- Audio para botón -->
+    <!-- === AUDIO DEL BOTÓN FINAL === -->
+    <!-- Este botón reproduce "MI" - la tercera y última nota de nuestra secuencia musical -->
+    <!-- Secuencia completa: DO → RE → MI (escala musical ascendente) -->
     <audio id="audioBoton" preload="auto">
         <source src="../static/audio/audio_botones/mi.mp3" type="audio/mpeg">
         Tu navegador no soporta el elemento de audio.
     </audio>
 
     <script>
-        // Función para reproducir sonido del botón
+        // === FUNCIÓN PARA EL ÚLTIMO SONIDO DE LA SECUENCIA ===
+        // Reproduce la nota "MI" cuando el usuario hace clic en "CONTINUAR"
         function reproducirSonidoBoton() {
             const audioBoton = document.getElementById('audioBoton');
             if (audioBoton) {
-                audioBoton.volume = 0.8; // Volumen un poco más alto para el efecto del botón
-                audioBoton.currentTime = 0; // Reiniciar desde el inicio
+                audioBoton.volume = 0.8;        // Mismo volumen que páginas anteriores
+                audioBoton.currentTime = 0;     // Reiniciar desde el inicio
+                // Reproducir la nota "MI" - culminación de la secuencia musical
                 audioBoton.play().catch(function(error) {
                     console.log('Error al reproducir sonido del botón:', error);
                 });
             }
         }
 
-        // Animación al cargar la página
+        // === ANIMACIÓN DE ENTRADA ===
+        // Efecto fade-in consistente con todas las páginas
         window.addEventListener('load', function() {
-            document.body.style.opacity = '0';
-            document.body.style.transition = 'opacity 0.5s ease';
+            document.body.style.opacity = '0';              // Invisible al inicio
+            document.body.style.transition = 'opacity 0.5s ease';  // Transición suave
             
+            // Hacer visible la página después de 100ms
             setTimeout(function() {
                 document.body.style.opacity = '1';
             }, 100);

@@ -109,30 +109,39 @@
             font-family: Arial, sans-serif;
         }
 
-        /* Botón de continuar */
+        /* === ESTILOS PARA EL BOTÓN DE CONTINUAR === */
         .boton-continuar {
+            /* Fondo degradado de rosa fuerte a rosa claro */
             background: linear-gradient(135deg, #FF1493, #FF69B4);
-            color: white;
-            border: none;
-            padding: 20px 60px;
-            border-radius: 50px;
-            font-size: 1.6rem;
-            font-weight: bold;
-            cursor: pointer;
+            color: white;                    /* Texto en blanco */
+            border: none;                    /* Sin borde */
+            padding: 20px 60px;             /* Espacio interno: 20px arriba/abajo, 60px izq/der */
+            border-radius: 50px;            /* Bordes muy redondeados */
+            font-size: 1.6rem;              /* Tamaño de letra grande */
+            font-weight: bold;              /* Letra en negrita */
+            cursor: pointer;                /* Manita cuando pasas el mouse */
+            /* Sombra suave que le da efecto de profundidad */
             box-shadow: 0 8px 25px rgba(255, 20, 147, 0.4);
+            /* Animación suave cuando cambia de estado */
             transition: all 0.3s ease;
-            text-transform: none;
-            letter-spacing: 1px;
-            margin-top: 10px;
+            text-transform: none;           /* No cambiar el texto a mayúsculas */
+            letter-spacing: 1px;            /* Espaciado entre letras */
+            margin-top: 10px;               /* Espacio arriba del botón */
         }
 
+        /* === EFECTOS CUANDO PASAS EL MOUSE POR ENCIMA === */
         .boton-continuar:hover {
+            /* Cambia el degradado a tonos más oscuros */
             background: linear-gradient(135deg, #C71585, #FF1493);
+            /* Mueve el botón hacia arriba 3 píxeles */
             transform: translateY(-3px);
+            /* Hace la sombra más intensa y grande */
             box-shadow: 0 12px 35px rgba(255, 20, 147, 0.6);
         }
 
+        /* === EFECTO CUANDO HACES CLIC === */
         .boton-continuar:active {
+            /* Mueve el botón solo 1 píxel hacia arriba (menos que hover) */
             transform: translateY(-1px);
         }
 
@@ -224,71 +233,92 @@
             <div class="mensaje-perfil">¡Vamos a divertirnos y aprender juntos!</div>
         </div>
 
-        <!-- Botón para continuar -->
+        <!-- === BOTÓN PRINCIPAL DE CONTINUAR === -->
+        <!-- 
+        onclick: Define qué pasa cuando alguien hace clic
+        1. reproducirSonidoBoton() - Reproduce el sonido "do.mp3"
+        2. setTimeout() - Espera 300 milisegundos (para que se escuche el sonido)
+        3. window.location.href - Cambia a la siguiente página
+        -->
         <button class="boton-continuar" onclick="reproducirSonidoBoton(); setTimeout(function() { window.location.href='/presentacion_lucas'; }, 300);">
             CONTINUAR
         </button>
     </div>
 
-    <!-- Audio de bienvenida -->
+    <!-- === ELEMENTO DE AUDIO PARA EL SALUDO === -->
+    <!-- Este audio se reproduce automáticamente cuando se carga la página -->
     <audio id="audioSaludo" preload="auto">
+        <!-- Especificamos la ruta del archivo de audio -->
         <source src="../static/audio/audio_saludo_chiquillo/sintetizador_saludo.mp3" type="audio/mpeg">
+        <!-- Mensaje para navegadores que no soportan audio -->
         Tu navegador no soporta el elemento de audio.
     </audio>
 
-    <!-- Audio para botón -->
+    <!-- === ELEMENTO DE AUDIO PARA EL BOTÓN === -->
+    <!-- Este audio se reproduce cuando el usuario hace clic en "CONTINUAR" -->
     <audio id="audioBoton" preload="auto">
+        <!-- Usamos el sonido "do.mp3" para este botón -->
         <source src="../static/audio/audio_botones/do.mp3" type="audio/mpeg">
         Tu navegador no soporta el elemento de audio.
     </audio>
 
     <script>
-        // Función para reproducir sonido del botón
+        // FUNCIÓN PARA REPRODUCIR SONIDO DEL BOTÓN
+        // Esta función se ejecuta cuando el usuario hace clic en "CONTINUAR"
         function reproducirSonidoBoton() {
+            // Buscamos el elemento de audio en la página
             const audioBoton = document.getElementById('audioBoton');
             if (audioBoton) {
-                audioBoton.volume = 0.8; // Volumen un poco más alto para el efecto del botón
-                audioBoton.currentTime = 0; // Reiniciar desde el inicio
+                // Configuramos el volumen (0.8 = 80% del volumen máximo)
+                audioBoton.volume = 0.8;
+                // Reiniciamos el audio desde el principio por si ya se había reproducido
+                audioBoton.currentTime = 0;
+                // Intentamos reproducir el sonido
                 audioBoton.play().catch(function(error) {
+                    // Si hay un error, lo mostramos en la consola del navegador
                     console.log('Error al reproducir sonido del botón:', error);
                 });
             }
         }
 
-        // Animación al cargar la página
+        // ANIMACIÓN AL CARGAR LA PÁGINA
+        // Esta función se ejecuta automáticamente cuando la página termina de cargar
         window.addEventListener('load', function() {
-            document.body.style.opacity = '0';
-            document.body.style.transition = 'opacity 0.5s ease';
+            // Hacemos que la página aparezca gradualmente (efecto fade-in)
+            document.body.style.opacity = '0';  // Empezamos invisible
+            document.body.style.transition = 'opacity 0.5s ease';  // Configuramos la transición
             
-            // Reproducir audio de saludo
+            // REPRODUCIR AUDIO DE SALUDO AUTOMÁTICAMENTE
             const audioSaludo = document.getElementById('audioSaludo');
             if (audioSaludo) {
-                // Configurar volumen moderado
+                // Configuramos un volumen moderado para el saludo
                 audioSaludo.volume = 0.7;
                 
-                // Intentar reproducir el audio
+                // Intentamos reproducir el audio de bienvenida
                 audioSaludo.play().catch(function(error) {
                     console.log('No se pudo reproducir el audio automáticamente:', error);
-                    // Los navegadores modernos bloquean la reproducción automática
+                    // NOTA: Los navegadores modernos bloquean la reproducción automática
                     // El audio se reproducirá cuando el usuario interactúe con la página
                 });
             }
             
+            // Después de 100 milisegundos, hacemos visible la página
             setTimeout(function() {
                 document.body.style.opacity = '1';
             }, 100);
         });
 
-        // Reproducir audio cuando el usuario haga clic en cualquier parte de la página
-        // (solución para políticas de autoplay de navegadores)
+        // SOLUCIÓN PARA NAVEGADORES QUE BLOQUEAN AUDIO AUTOMÁTICO
+        // Si el audio no se reproduce solo, se activará con el primer clic del usuario
         document.addEventListener('click', function() {
             const audioSaludo = document.getElementById('audioSaludo');
+            // Solo reproducimos si el audio está pausado
             if (audioSaludo && audioSaludo.paused) {
                 audioSaludo.play().catch(function(error) {
                     console.log('Error al reproducir audio:', error);
                 });
             }
-        }, { once: true }); // Solo se ejecuta una vez
+        }, { once: true }); // { once: true } significa que esto solo pasa una vez
     </script>
 </body>
 </html>

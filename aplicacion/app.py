@@ -1,33 +1,43 @@
+# Importamos la librería web.py para crear nuestra aplicación web
 import web
 
+# Aquí definimos todas las rutas (URLs) de nuestra aplicación
+# Cada ruta está conectada a una clase que maneja esa página
 urls = (
-    '/', 'Index',
-    '/registrar_tutor', 'RegistrarTutor',
-    '/registrar_chiquillo', 'RegistrarChiquillo',
-    '/saludo_admin', 'SaludoAdmin',
-    '/saludo_chiquillo', 'SaludoChiquillo',
-    '/presentacion_lucas', 'PresentacionLucas',
-    '/presentacion_pagina', 'PresentacionPagina',
-    '/lecciones', 'Lecciones',
-    '/perfil_admin', 'PerfilAdmin',
-    '/iniciar_sesion', 'IniciarSesion',
-    '/quienes_somos', 'QuienesSomos',
-    '/inicio_administrador', 'InicioAdministrador'
+    '/', 'Index',                                    # Página principal (home)
+    '/registrar_tutor', 'RegistrarTutor',           # Formulario para registrar tutores
+    '/registrar_chiquillo', 'RegistrarChiquillo',   # Formulario para registrar niños
+    '/saludo_admin', 'SaludoAdmin',                 # Página de saludo para administradores
+    '/saludo_chiquillo', 'SaludoChiquillo',         # Página de saludo para niños
+    '/presentacion_lucas', 'PresentacionLucas',     # Presentación del personaje Lucas
+    '/presentacion_pagina', 'PresentacionPagina',   # Presentación general de la aplicación
+    '/lecciones', 'Lecciones',                      # Página principal de lecciones
+    '/perfil_admin', 'PerfilAdmin',                 # Perfil del administrador/tutor
+    '/iniciar_sesion', 'IniciarSesion',             # Página de inicio de sesión
+    '/quienes_somos', 'QuienesSomos',               # Página informativa "Quiénes somos"
+    '/inicio_administrador', 'InicioAdministrador'   # Panel de inicio para administradores
 )
 
+# Configuramos el motor de plantillas de web.py
+# Le decimos que busque los archivos HTML en la carpeta 'templates'
+# cache=False significa que los cambios se ven inmediatamente (útil para desarrollo)
 render = web.template.render('templates', cache=False)
 
+# Creamos la aplicación web usando las rutas definidas arriba
 app = web.application(urls, globals())
 
+# Clase que maneja la página principal (cuando alguien visita "/")
 class Index:
     def GET(self):
-        # Headers más agresivos para evitar caché
+        # Estos headers evitan que el navegador guarde la página en caché
+        # Esto asegura que siempre se vea la versión más actualizada
         web.header('Cache-Control', 'no-cache, no-store, must-revalidate, max-age=0')
         web.header('Pragma', 'no-cache')
         web.header('Expires', '0')
         web.header('Last-Modified', '')
         web.header('ETag', '')
         web.header('Vary', '*')
+        # Mostramos la página index.html
         return render.index()
 
 class RegistrarTutor:
@@ -53,6 +63,7 @@ class RegistrarChiquillo:
         return render.registrar_chiquillo()
     
     def POST(self):
+        # Esta función se ejecuta cuando el usuario envía el formulario de registro
         # Headers para evitar caché
         web.header('Cache-Control', 'no-cache, no-store, must-revalidate, max-age=0')
         web.header('Pragma', 'no-cache')
@@ -61,17 +72,17 @@ class RegistrarChiquillo:
         web.header('ETag', '')
         web.header('Vary', '*')
         
-        # Obtener datos del formulario
+        # Obtenemos todos los datos que el usuario escribió en el formulario
         data = web.input()
-        print("POST recibido en /registrar_chiquillo")
-        print("Datos:", data)
+        print("POST recibido en /registrar_chiquillo")  # Para debugging - ver en consola
+        print("Datos:", data)  # Mostrar qué datos llegaron
         
-        # Aquí puedes procesar los datos del formulario si es necesario
-        # Por ejemplo, guardar los datos de los niños registrados
+        # Aquí podríamos procesar los datos del formulario
+        # Por ejemplo: guardar los datos de los niños en una base de datos
         
-        # Redirigir a la página de saludo del administrador
+        # Después de procesar, redirigimos al usuario a la página de saludo del admin
         print("Redirigiendo a /saludo_admin")
-        raise web.seeother('/saludo_admin')
+        raise web.seeother('/saludo_admin')  # Esto cambia la página automáticamente
 
 class SaludoAdmin:
     def GET(self):
@@ -195,5 +206,7 @@ class Lecciones:
         web.header('Vary', '*')
         return render.lecciones()
 
+# Esta línea especial hace que la aplicación se ejecute solo cuando 
+# ejecutamos este archivo directamente (no cuando lo importamos desde otro lugar)
 if __name__ == "__main__":
-    app.run()
+    app.run()  # ¡Aquí arranca nuestro servidor web!
