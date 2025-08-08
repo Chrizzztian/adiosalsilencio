@@ -29,49 +29,17 @@ app = web.application(urls, globals())
 # Clase que maneja la página principal (cuando alguien visita "/")
 class Index:
     def GET(self):
-        # Estos headers evitan que el navegador guarde la página en caché
-        # Esto asegura que siempre se vea la versión más actualizada
-        web.header('Cache-Control', 'no-cache, no-store, must-revalidate, max-age=0')
-        web.header('Pragma', 'no-cache')
-        web.header('Expires', '0')
-        web.header('Last-Modified', '')
-        web.header('ETag', '')
-        web.header('Vary', '*')
-        # Mostramos la página index.html
         return render.index()
 
 class RegistrarTutor:
     def GET(self):
-        # Headers para evitar caché
-        web.header('Cache-Control', 'no-cache, no-store, must-revalidate, max-age=0')
-        web.header('Pragma', 'no-cache')
-        web.header('Expires', '0')
-        web.header('Last-Modified', '')
-        web.header('ETag', '')
-        web.header('Vary', '*')
         return render.registrar_tutor()
 
 class RegistrarChiquillo:
     def GET(self):
-        # Headers para evitar caché
-        web.header('Cache-Control', 'no-cache, no-store, must-revalidate, max-age=0')
-        web.header('Pragma', 'no-cache')
-        web.header('Expires', '0')
-        web.header('Last-Modified', '')
-        web.header('ETag', '')
-        web.header('Vary', '*')
         return render.registrar_chiquillo()
     
     def POST(self):
-        # Esta función se ejecuta cuando el usuario envía el formulario de registro
-        # Headers para evitar caché
-        web.header('Cache-Control', 'no-cache, no-store, must-revalidate, max-age=0')
-        web.header('Pragma', 'no-cache')
-        web.header('Expires', '0')
-        web.header('Last-Modified', '')
-        web.header('ETag', '')
-        web.header('Vary', '*')
-        
         # Obtenemos todos los datos que el usuario escribió en el formulario
         data = web.input()
         print("POST recibido en /registrar_chiquillo")  # Para debugging - ver en consola
@@ -87,69 +55,26 @@ class RegistrarChiquillo:
 class SaludoAdmin:
     def GET(self):
         print("GET recibido en /saludo_admin")
-        # Headers para evitar caché
-        web.header('Cache-Control', 'no-cache, no-store, must-revalidate, max-age=0')
-        web.header('Pragma', 'no-cache')
-        web.header('Expires', '0')
-        web.header('Last-Modified', '')
-        web.header('ETag', '')
-        web.header('Vary', '*')
         print("Renderizando template saludo_admin")
         return render.saludo_admin()
 
 class PerfilAdmin:
     def GET(self):
-        # Headers para evitar caché
-        web.header('Cache-Control', 'no-cache, no-store, must-revalidate, max-age=0')
-        web.header('Pragma', 'no-cache')
-        web.header('Expires', '0')
-        web.header('Last-Modified', '')
-        web.header('ETag', '')
-        web.header('Vary', '*')
         return render.perfil_admin()
 
 class IniciarSesion:
     def GET(self):
-        # Headers para evitar caché
-        web.header('Cache-Control', 'no-cache, no-store, must-revalidate, max-age=0')
-        web.header('Pragma', 'no-cache')
-        web.header('Expires', '0')
-        web.header('Last-Modified', '')
-        web.header('ETag', '')
-        web.header('Vary', '*')
         return render.iniciar_sesion()
 
 class QuienesSomos:
     def GET(self):
-        # Headers para evitar caché
-        web.header('Cache-Control', 'no-cache, no-store, must-revalidate, max-age=0')
-        web.header('Pragma', 'no-cache')
-        web.header('Expires', '0')
-        web.header('Last-Modified', '')
-        web.header('ETag', '')
-        web.header('Vary', '*')
         return render.quienes_somos()
 
 class InicioAdministrador:
     def GET(self):
-        # Headers para evitar caché
-        web.header('Cache-Control', 'no-cache, no-store, must-revalidate, max-age=0')
-        web.header('Pragma', 'no-cache')
-        web.header('Expires', '0')
-        web.header('Last-Modified', '')
-        web.header('ETag', '')
-        web.header('Vary', '*')
         return render.inicio_administrador()
     
     def POST(self):
-        # Headers para evitar caché
-        web.header('Cache-Control', 'no-cache, no-store, must-revalidate, max-age=0')
-        web.header('Pragma', 'no-cache')
-        web.header('Expires', '0')
-        web.header('Last-Modified', '')
-        web.header('ETag', '')
-        web.header('Vary', '*')
-        
         # Obtener datos del formulario
         data = web.input()
         correo = data.get('correo', '')
@@ -164,46 +89,18 @@ class InicioAdministrador:
 
 class SaludoChiquillo:
     def GET(self):
-        # Headers para evitar caché
-        web.header('Cache-Control', 'no-cache, no-store, must-revalidate, max-age=0')
-        web.header('Pragma', 'no-cache')
-        web.header('Expires', '0')
-        web.header('Last-Modified', '')
-        web.header('ETag', '')
-        web.header('Vary', '*')
         return render.saludo_chiquillo()
 
 class PresentacionLucas:
     def GET(self):
-        # Headers para evitar caché
-        web.header('Cache-Control', 'no-cache, no-store, must-revalidate, max-age=0')
-        web.header('Pragma', 'no-cache')
-        web.header('Expires', '0')
-        web.header('Last-Modified', '')
-        web.header('ETag', '')
-        web.header('Vary', '*')
         return render.presentacion_lucas()
 
 class PresentacionPagina:
     def GET(self):
-        # Headers para evitar caché
-        web.header('Cache-Control', 'no-cache, no-store, must-revalidate, max-age=0')
-        web.header('Pragma', 'no-cache')
-        web.header('Expires', '0')
-        web.header('Last-Modified', '')
-        web.header('ETag', '')
-        web.header('Vary', '*')
         return render.presentacion_pagina()
 
 class Lecciones:
     def GET(self):
-        # Headers para evitar caché
-        web.header('Cache-Control', 'no-cache, no-store, must-revalidate, max-age=0')
-        web.header('Pragma', 'no-cache')
-        web.header('Expires', '0')
-        web.header('Last-Modified', '')
-        web.header('ETag', '')
-        web.header('Vary', '*')
         return render.lecciones()
 
 # Esta línea especial hace que la aplicación se ejecute solo cuando 
